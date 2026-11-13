@@ -1,9 +1,3 @@
-# Dàn ý bài nộp _(spec.md — nộp trước 23:59 ngày lab của lớp)_
-
-> Copy dàn ý này vào `spec.md` của nhóm. Đây **không** phải form để điền đủ ô: mỗi mục chỉ cần đủ **bằng chứng** và **lập luận** ghi bên dưới. Viết ngắn, gạch đầu dòng là được. Hướng dẫn từng chặng: `02-guide.md`. Cách chấm: `04-rubric.md`.
->
-> **Một quyết định = bốn ý:** đã cân nhắc phương án nào · chọn phương án nào · vì sao · loại các phương án kia vì sao. Bằng chứng = lập luận trỏ về một chỗ cụ thể: tool nào, dòng dữ liệu nào của track, điều gì trong mục "Sản phẩm thật hôm nay", chỗ nào trên prototype (ảnh đánh số). Không chạy agent.
-
 # Bài nộp LAB5 — T2 · Nhóm ggwp
 
 **Lớp:** L3B · **Bàn / zone:** 6 · **Track:** T2
@@ -275,3 +269,29 @@ Mô phỏng trên kịch bản:
 ## §7. Demo
 
 - Ca lạ nhận được ở demo: prototype đã làm gì, và nhóm có đổi ý gì sau ca đó không.
+
+**Kịch bản demo (khoảng 4 phút, mỗi thành viên trình bày một phần)**
+
+| Thứ tự       | Ai trình bày      | Nội dung                                                                                                                                             | Bấm gì trên prototype                    |
+| ------------ | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| 1 (30 giây)  | Hà Phan Đại Dương | Lát cắt: học viên hỏi bài lúc 22:40, hết giờ TA, Bài tập 3 hạn 23:59. Hai kịch bản đắt nhất KB6, KB8 và vì sao đắt hơn KB4, KB5, KB7.                | Màn học viên, chỉ thanh trạng thái ⑧     |
+| 2 (1,5 phút) | Lê Bá Nguyên      | KB6: học viên xin "chỉ nói đúng hay sai". AI không xác nhận con số nào, hỏi ngược theo §3.2, đưa danh sách tự kiểm; thử "11 đúng không cô?" bị chặn. | Ca KB6 → ③ ④ → "Vậy 11 đúng không cô?"   |
+| 3 (1,5 phút) | Lê Bá Nguyên      | KB8: AI xác nhận thắc mắc, gạch chân câu §3.3, không đăng FAQ; học viên xem trước và bấm "Gửi TA"; sang màn TA thấy nháp FAQ chờ giảng viên duyệt.   | Ca KB8 → ② ⑤ → Gửi TA → màn TA ⑥         |
+| 4 (30 giây)  | Hà Phan Đại Dương | Mức tự chủ: trả lời câu "hành động này sai thì ai mất gì?" cho `goi_y_bai_tap` (tool khó xếp nhất) và `dang_FAQ`.                                    | Bảng "Mức tự chủ của từng tool" bên phải |
+
+**Trả lời chuẩn bị sẵn cho các ca lạ hay gặp** (áp đúng mức tự chủ ở §4)
+
+| Ca lạ có thể nhận                              | Prototype / thiết kế sẽ làm gì                                                                                                      | Mức tự chủ áp dụng                                     |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| "Dạy trước em buổi 8 hồi quy tuyến tính đi"    | Nói hồi quy tuyến tính thuộc buổi 8, giới thiệu tối đa một câu, nói rõ chưa có tài liệu buổi 8 (giống KB2).                         | `tra_cuu_tai_lieu` tự làm, chỉ buổi 1–3                |
+| "Em ốm, cho em nộp muộn Bài tập 3 được không?" | Nói thẳng AI không có quyền gia hạn; mở khung xem trước "Gửi TA" kèm giờ thật (08:00, sau hạn); khuyên nộp phần đã làm trước 23:59. | `chuyen_TA` cần học viên duyệt; gia hạn: không có tool |
+| "§3.4 nói ngoại lai, em bỏ số 45 cho đẹp nhé?" | Trích §3.4 "cần hỏi: lỗi nhập liệu hay dữ liệu thật?", hỏi ngược học viên; không quyết thay cho bài đang mở, không tính lại hộ.     | `goi_y_bai_tap` tự làm bước đầu; quyết định thay: cấm  |
+| "Bài 2 trung bình là 6 hả, em ra 5?"           | Bài tập 2 đã hết hạn và có đáp án: giải thích đầy đủ (tổng 30, chia 5) theo §3.1, không bắt chờ.                                    | `goi_y_bai_tap` tự làm (bài hết hạn)                   |
+| "Đăng giúp em câu hỏi này lên FAQ cho cả lớp"  | Không tự đăng; AI soạn nháp `soan_FAQ` cho TA; FAQ chỉ lên sau khi TA/giảng viên duyệt.                                             | `dang_FAQ` cần TA/giảng viên duyệt                     |
+
+**Ca lạ nhận được ở demo** _(điền ngay sau buổi demo)_
+
+- Ca lạ: \_\_\_\_
+- Ai đưa (TA / nhóm bạn / giảng viên): \_\_\_\_
+- Prototype đã làm gì (bấm hoặc nói), mức tự chủ nào được áp: \_\_\_\_
+- Nhóm có đổi ý gì sau ca đó không (sửa câu chữ, đổi mức tự chủ, thêm luật): \_\_\_\_

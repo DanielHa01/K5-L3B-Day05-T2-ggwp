@@ -77,7 +77,7 @@ Với mỗi kịch bản đắt nhất:
 
 - Học viên tự đối chiếu bài theo danh sách tự kiểm; nếu trả lời câu hỏi ngược (“8 giá trị, chẵn”), AI gợi ý bước tiếp theo theo §3.2, vẫn không đưa hay xác nhận con số.
 - Nếu học viên gửi lại con số khác để “thử” (“vậy 11 đúng không?”), AI trả lời giống lần đầu, không đúng/không sai.
-- Nếu vẫn muốn người kiểm, học viên bấm “Hỏi TA”; hệ thống hiện thẻ “Đã gửi TA · mã ticket · TA xem từ 08:00 14/11” kèm nút huỷ. Nếu học viên không làm gì, không có gì được gửi đi.
+- Nếu vẫn muốn người kiểm, học viên bấm “Hỏi TA”; hệ thống hiện khung xem trước nội dung gửi (theo §4, `chuyen_TA` cần học viên duyệt); bấm “Gửi TA” xong mới có thẻ “Đã tiếp nhận · mã ticket · TA xem từ 08:00 14/11”. Nếu học viên không làm gì, không có gì được gửi đi.
 
 **Ai được báo, sau bao lâu:**
 
@@ -125,25 +125,26 @@ Với mỗi kịch bản đắt nhất:
 **AI nói (nguyên văn):**
 
 > Mình là trợ lý AI của khoá, không phải giảng viên. Bạn thắc mắc đúng chỗ: câu “độ lệch chuẩn luôn nhỏ hơn phương sai” ở **§3.3** cần được xem lại. Độ lệch chuẩn là căn bậc hai của phương sai, nên câu đó chỉ đúng khi phương sai lớn hơn 1. Ví dụ phương sai 0,25 thì độ lệch chuẩn là 0,5, lớn hơn.
-> Mình không thể kết luận thay giảng viên rằng tài liệu sai, nên mình **chưa đăng FAQ**. Mình đã gửi câu này cho TA với nhãn “nghi tài liệu sai” (xem thẻ bên dưới); câu trả lời chung cho cả lớp sẽ chỉ được đăng sau khi giảng viên duyệt.
+> Mình không thể kết luận thay giảng viên rằng tài liệu sai, nên mình **chưa đăng FAQ**. Bạn có muốn gửi câu này cho TA với nhãn “nghi tài liệu sai” không? Bạn xem trước nội dung gửi ở khung bên dưới, sửa được trước khi bấm gửi; câu trả lời chung cho cả lớp sẽ chỉ được đăng sau khi giảng viên duyệt.
 > Phần còn lại của §3.3 (độ lệch chuẩn là căn bậc hai của phương sai, cùng đơn vị với dữ liệu) bạn vẫn dùng bình thường.
 
 **Người dùng thấy:**
 
 - Chip **§3.3** kèm đoạn trích nguyên văn; câu bị nghi được **gạch chân vàng**, nhãn “Đang chờ giảng viên xem lại”.
-- **Thẻ do hệ thống sinh** (không phải AI viết): “Đã gửi TA · #TA-0317 · nhãn: nghi tài liệu sai · TA xem từ 08:00 ngày 14/11 · [Huỷ gửi] trong 5 phút”.
+- **Khung xem trước “Gửi TA”** (theo §4, `chuyen_TA` cần học viên duyệt): câu hỏi, đoạn §3.3, phản ví dụ, nhãn “nghi tài liệu sai”, thông báo “ngoài giờ TA, TA xem từ 08:00 ngày 14/11”. Nút: [Gửi TA] · [Sửa] · [Không gửi]. Không đính kèm toàn bộ hội thoại.
+- **Sau khi bấm gửi, thẻ trạng thái do hệ thống sinh** theo kết quả tool (không phải AI viết): “Đang gửi…” → “Đã tiếp nhận · #TA-0317 · TA xem từ 08:00 ngày 14/11”, hoặc “Chưa gửi được, thử lại”.
 - Trang FAQ **chưa có** bài nào về câu này; không có nút “Đăng FAQ” ở phía học viên.
 - Nút “Sai chỗ nào?” dưới câu trả lời.
 
 **Làm gì tiếp:**
 
-- Học viên học tiếp phần đúng của §3.3; có thể thêm ghi chú cho TA hoặc huỷ gửi trong 5 phút.
+- Học viên học tiếp phần đúng của §3.3; xem trước, sửa rồi bấm “Gửi TA”, hoặc bấm “Không gửi”.
 - Học viên khác tra §3.3 sau đó cũng thấy câu bị gạch chân và nhãn “đang chờ xem lại”, kể cả khi không hỏi.
-- Nếu không ai làm gì thêm: ticket vẫn nằm trong hàng chờ TA; không có gì lên FAQ.
+- Nếu học viên không bấm gửi: không có gì được gửi đi và không có gì lên FAQ; câu §3.3 vẫn mang nhãn “đang chờ xem lại” vì AI đã ghi nhận nghi vấn vào nháp `soan_FAQ` nội bộ cho TA.
 
 **Ai được báo, sau bao lâu:**
 
-- **TA**, đầu hàng chờ lúc **08:00 ngày 14/11**, ưu tiên cao vì ảnh hưởng cả lớp. TA thấy: đoạn §3.3, câu bị nghi, phản ví dụ (0,25 → 0,5), số học viên đã hỏi cùng câu, và **nháp FAQ do AI soạn**.
+- **TA** (khi học viên bấm “Gửi TA”), đầu hàng chờ lúc **08:00 ngày 14/11**, ưu tiên cao vì ảnh hưởng cả lớp. TA thấy: đoạn §3.3, câu bị nghi, phản ví dụ (0,25 → 0,5), số học viên đã hỏi cùng câu, và **nháp FAQ do AI soạn**.
 - **Giảng viên** được TA chuyển để duyệt, vì nội dung liên quan tài liệu. Quá 48 giờ không ai duyệt thì nháp tự huỷ, **không tự đăng**.
 - Học viên được báo lại khi giảng viên duyệt (cờ trên §3.3 đổi thành “Đã đính chính”).
 
@@ -155,7 +156,7 @@ Ca này có **hai việc** khác nhau: trả lời người đang hỏi, và đ�
 | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **1. Hỏi lại** (“Bạn thấy sai ở chỗ nào, cho mình ví dụ?”)                                                                   | Loại                        | Câu hỏi đã rõ, chỗ có vấn đề là tài liệu chứ không phải học viên. Hỏi lại chỉ làm học viên chờ thêm và nghĩ mình hiểu sai.                                                          |
 | **2. Trả lời kèm giới hạn** cho người đang hỏi: “câu ở §3.3 cần được xem lại” + phản ví dụ, không khẳng định thay giảng viên | **Chọn** (việc trả lời)     | Người hỏi học đúng ngay tối nay; AI chỉ nói điều kiểm được bằng phép tính, không kết luận tài liệu sai.                                                                             |
-| **3. Dừng và chuyển người** cho phần đăng FAQ: không tự đăng, gửi TA kèm nháp chờ giảng viên duyệt                           | **Chọn** (việc đăng cả lớp) | Câu nói với cả lớp phải qua người có thẩm quyền về tài liệu. Chờ duyệt gần như không mất gì vì từng người hỏi vẫn được trả lời riêng.                                               |
+| **3. Dừng và chuyển người** cho phần đăng FAQ: không tự đăng, mời học viên gửi TA (học viên xem trước rồi bấm), nháp FAQ chờ giảng viên duyệt                           | **Chọn** (việc đăng cả lớp) | Câu nói với cả lớp phải qua người có thẩm quyền về tài liệu. Chờ duyệt gần như không mất gì vì từng người hỏi vẫn được trả lời riêng.                                               |
 | **4.Phương án sai** Đăng FAQ ngay theo §3.3, hoặc đăng ngay bản đã sửa “§3.3 sai” như học viên nhờ                           | Loại                        | Bản theo §3.3 là lan câu sai có trích nguồn. Bản đã sửa thì AI tự nhận thẩm quyền sửa tài liệu cho cả lớp; lần sau AI tưởng tài liệu sai mà thật ra AI sai, nó sẽ lan sai rộng hơn. |
 
 **Loại lỗi: lỗi hệ thống (nguồn sự thật sai)**
@@ -168,7 +169,7 @@ Ca này có **hai việc** khác nhau: trả lời người đang hỏi, và đ�
 
 - **G11 + PAIR Explainability & Trust:** chip **§3.3** mở đoạn trích nguyên văn, câu bị nghi gạch chân vàng. Học viên thấy được AI dựa vào đâu và câu nào đang bị nghi, thay vì tin mù quáng vì “có trích nguồn”.
 - **G10 (thu hẹp phạm vi khi nghi ngờ):** khi nguồn bị nghi sai, AI chỉ trả lời **riêng người hỏi**, không mở rộng ra cả lớp qua FAQ.
-- **PAIR Errors + Graceful Failure:** thẻ “Đã gửi TA · #TA-0317 · TA xem từ 08:00 ngày 14/11 · [Huỷ gửi]” do hệ thống sinh, có mã và giờ thật.
+- **PAIR Errors + Graceful Failure:** khung xem trước “Gửi TA” cho học viên sửa hoặc từ chối, và thẻ trạng thái “Đã tiếp nhận · #TA-0317 · TA xem từ 08:00 ngày 14/11” do hệ thống sinh theo kết quả tool, có mã và giờ thật.
 
 **Lỗi sửa câu chữ không cứu được, và thiết kế cứu nó**
 
@@ -214,9 +215,61 @@ Mô phỏng trên kịch bản:
 - 1–2 ảnh có đánh số; mỗi số: thể hiện gì · nguyên tắc HAX/PAIR nào · mức tự chủ nào.
 - Quyết định: cách hiện độ chắc/bằng chứng và điều khiển mức tự chủ — đã nghĩ tới cách nào khác, vì sao chọn cách này.
 
+**Prototype**
+
+- **File:** `prototype/index.html` (một file HTML, mở bằng trình duyệt, không cần mạng). Hướng dẫn bấm: `prototype/README.md`.
+- **Công cụ:** HTML + CSS + JavaScript thuần, dựng bằng coding agent.
+- **Phần mock:** toàn bộ câu trả lời AI là kịch bản dựng sẵn theo §3; dữ liệu là Dữ liệu A, B của track; trạng thái gửi TA giả lập kết quả tool. **Không có lời gọi AI thật.**
+- **Hai màn hình:** (1) **Màn học viên**: trang khoá học + khung trợ lý, chọn ca **KB6** hoặc **KB8**, bấm qua từ đầu tới cuối. (2) **Màn TA (sáng 14/11)**: hàng chờ với ticket #TA-0317 (nghi tài liệu sai, có nháp FAQ chờ giảng viên duyệt), bản tổng hợp ẩn danh Bài tập 3, và câu hỏi #TA-0318 gửi sau hạn.
+- **Ca khó bấm qua được:** KB8: học viên báo §3.3 sai → AI xác nhận thắc mắc, gạch chân câu bị nghi, không đăng FAQ → học viên xem trước, sửa, bấm "Gửi TA" → thẻ "Đã tiếp nhận · #TA-0317" → chuyển sang màn TA thấy ticket và nháp FAQ chờ duyệt.
+
+**Ảnh có đánh số** (`prototype/screenshot-1-KB6.png`, `screenshot-2-KB8-xem-truoc.png`, `screenshot-3-KB8-da-gui.png`, `screenshot-4-TA.png`)
+
+| Số | Thể hiện gì | Nguyên tắc HAX/PAIR | Mức tự chủ (khớp §4) |
+|---|---|---|---|
+| ① | Tên "Trợ lý AI của khoá" + dòng phạm vi "Chỉ dựa trên tài liệu buổi 1–3 · không đưa hay xác nhận đáp số bài đang mở" | G1, G2 | — |
+| ② | Chip §3.2 / §3.3 mở đoạn trích nguyên văn; câu bị nghi ở §3.3 gạch chân vàng, nhãn "Đang chờ giảng viên xem lại" | G11, PAIR Explainability & Trust | `tra_cuu_tai_lieu`: tự làm |
+| ③ | Câu hỏi ngược "khi số giá trị là chẵn thì trung vị tính thế nào?" kèm nút trả lời nhanh, thay vì phán đúng/sai | G10 | `goi_y_bai_tap`: tự làm bước đầu |
+| ④ | Danh sách tự kiểm 3 dòng không có con số; **không có nút** "Kiểm tra đáp số", chỉ ghi "Đáp án công bố sau 23:59"; thử dò "11 đúng không" bị hệ thống chặn | G10 + mức cấm | `goi_y_bai_tap`: **cấm** đáp số, xác nhận, nhận xét hộ khi bài đang mở |
+| ⑤ | Khung xem trước "Gửi TA" (nhãn, đoạn đính kèm, ghi chú ngoài giờ, sửa được, nút Gửi TA / Không gửi); sau khi gửi là thẻ trạng thái "Đang gửi… → Đã tiếp nhận · #TA-0317 · TA xem từ 08:00" do hệ thống sinh | PAIR Errors + Graceful Failure | `chuyen_TA`: **cần học viên duyệt**; trạng thái theo kết quả tool |
+| ⑥ | Màn TA: nháp FAQ do AI soạn, nút "Chuyển giảng viên duyệt và đăng" / "Sửa nháp" / "Bỏ nháp", hạn duyệt 48 giờ, quá hạn không tự đăng | G9, PAIR Feedback & Control | `soan_FAQ`: tự làm (nháp riêng); `dang_FAQ`: **cần TA/giảng viên duyệt** |
+| ⑦ | Nút "Sai chỗ nào?" dưới câu trả lời nội dung (trích sai mục / giải thích sai / gợi ý quá tay / khó hiểu) | G15 | — |
+| ⑧ | Thanh trạng thái "Bài tập 3 · đang mở · hạn 23:59 hôm nay · chế độ gợi ý · còn 79 phút" | G2 | Nguồn: trang khoá học (Dữ liệu B) |
+
+**Quyết định: cách hiện độ chắc / bằng chứng và điều khiển mức tự chủ**
+
+| Thứ cần hiện | Đã cân nhắc | Chọn | Vì sao, và vì sao loại cách kia |
+|---|---|---|---|
+| Độ chắc / bằng chứng | Con số % độ tin cậy | **Chip mã mục §** mở đoạn trích nguyên văn, và nhãn "cần xem lại" khi nguồn bị nghi | Học viên không biết 70% nghĩa là gì và không tự kiểm được bằng con số %. Chip § cho học viên đọc đúng câu AI dựa vào. Ở KB8, chính nguồn sai, nên phải hiện được "có nguồn nhưng nguồn đang bị nghi", điều mà % không làm được. |
+| Mức cấm của đáp số | Nút "Xem đáp số" bị mờ (disabled) | **Không có nút**, chỉ dòng chữ khi nào đáp án có | Nút mờ gợi ý "có cách mở khoá", dẫn học viên đi dò. Không có nút đúng với §4: nội dung cấm không có cơ chế duyệt để vượt qua. |
+| `chuyen_TA` cần học viên duyệt | (a) AI tự gửi kèm nút huỷ 5 phút; (b) hộp thoại "Gửi không? Có/Không" | **Khung xem trước sửa được** trong luồng chat, rồi thẻ trạng thái theo kết quả tool | (a) trái §4 vì học viên có thể chỉ muốn được giải thích riêng, và gửi rồi không bảo đảm TA chưa đọc. (b) không cho học viên thấy và sửa nội dung sẽ gửi, nên vẫn có thể lộ ngữ cảnh không cần thiết. |
+| Câu "đã gửi TA" | AI tự viết câu báo đã gửi | **Thẻ hệ thống** chỉ hiện khi tool trả kết quả | AI có thể nói "đã báo TA" khi chưa gửi (§3, lỗi sửa câu chữ không cứu được). Thẻ hệ thống tách lời AI khỏi trạng thái thật. |
+
 ## §6. Tốt là gì (chặng 6 — nhẹ, bỏ được nếu thiếu giờ)
 
 - 3 tiêu chí Pass/Fail chấm được; thiết kế của nhóm đạt tiêu chí nào trên 2 kịch bản đắt nhất; lỗi còn lại.
+
+**3 tiêu chí Pass/Fail** (chấm được chỉ bằng cách đọc câu trả lời và màn hình, không cần tranh luận)
+
+| # | Tiêu chí | Pass khi | Fail khi |
+|---|---|---|---|
+| T1 | **Không lộ đáp số bài đang mở** | Với Bài tập 3 (đang mở), câu trả lời không chứa kết quả tính từ đề (trung bình 15,25; trung vị 11,5), không có từ xác nhận ("đúng", "chuẩn", "hợp lý", "chính xác") đi với con số học viên gửi, và mọi con số học viên gửi đều nhận cùng một câu trả lời. | Có một trong các điều trên, kể cả khi con số học viên gửi là đúng. |
+| T2 | **Mọi câu nội dung có nguồn thật** | Mỗi câu về nội dung có ít nhất 1 mã mục (§3.1–§3.5) tồn tại trong tài liệu buổi đã mở; câu nào trong tài liệu đang bị nghi thì được gắn "cần xem lại", không được dùng làm căn cứ khẳng định. | Nhắc nguồn không có (slide, trang, buổi chưa mở), hoặc dùng câu bị nghi để bác học viên. |
+| T3 | **Không có gì ra ngoài khi chưa đúng người duyệt** | Không có ticket TA nào nếu học viên chưa bấm "Gửi TA"; câu "đã gửi/đã tiếp nhận" chỉ xuất hiện dưới dạng thẻ hệ thống khớp với một ticket trong hàng chờ TA, kèm giờ TA đúng Dữ liệu B; không có bài FAQ nào lên khi chưa có TA/giảng viên duyệt. | AI tự viết "đã báo TA", có ticket mà học viên chưa duyệt, giờ TA sai, hoặc FAQ lên mà chưa ai duyệt. |
+
+**Chấm thử thiết kế của nhóm (§3, §4 và prototype) trên 2 kịch bản đắt nhất**
+
+| Tiêu chí | KB6 · Xác nhận đáp số cũng làm lộ đáp án | KB8 · Đăng rộng khẳng định sai có trích nguồn |
+|---|---|---|
+| T1 | **Pass.** AI nói không xác nhận con số nào; học viên thử "11 đúng không cô?" nhận cùng câu trả lời, hệ thống chặn câu có xác nhận (prototype, ảnh 1, chỗ ④). | **Pass** (không liên quan bài đang mở; AI không đưa con số nào của Bài tập 3). |
+| T2 | **Pass.** Dẫn §3.2 (cách tính trung vị khi số giá trị chẵn), §3.1. | **Pass.** Dẫn §3.3, câu bị nghi gạch chân và gắn "Đang chờ giảng viên xem lại", AI không dùng câu đó để bác học viên (ảnh 2, chỗ ②). |
+| T3 | **Pass.** Chỉ có ticket #TA-0318 khi học viên bấm "Hỏi TA" rồi duyệt khung xem trước; giờ TA 08:00 ngày 14/11 khớp Dữ liệu B. | **Pass.** Không đăng FAQ; ticket #TA-0317 chỉ có sau khi học viên bấm "Gửi TA"; nháp FAQ nằm ở màn TA chờ giảng viên duyệt (ảnh 3, 4, chỗ ⑤ ⑥). |
+
+**Lỗi còn lại (chưa sửa được)**
+
+- **KB6:** học viên vẫn có thể **dò đáp số gián tiếp** bằng câu hỏi so sánh ("trung vị có lớn hơn 11 không?") hoặc hỏi lại bằng tài khoản khác. Luật chặn con số + từ xác nhận chưa bắt được kiểu này; hiện chỉ ghi "có dấu hiệu dò đáp số" vào tổng hợp ẩn danh cho TA.
+- **KB8:** từ 22:40 đến khi giảng viên duyệt, học viên nào **tự mở tài liệu** ngoài trợ lý vẫn đọc câu sai ở §3.3 nếu cờ "đang chờ xem lại" chưa được hiện trong file tài liệu gốc. Và thiết kế chỉ bắt được lỗi tài liệu **đã được học viên nghi ngờ**; câu sai mà chưa ai thắc mắc thì T2 vẫn Pass dù nội dung sai.
+- **Chung:** nếu học viên không bấm "Gửi TA" ở KB8 thì giảng viên có thể không biết tài liệu sai, trừ khi nháp `soan_FAQ` nội bộ được TA xem định kỳ.
 
 ## §7. Demo
 
